@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header';
-import Dashboard from './components/Dashboard';
+import Home from './components/Home';
 import Add from './components/Add';
-import Signup from './components/Signup';
-import Login from './components/Login';
+import Logout from './components/Logout';
 import { Route } from 'react-router-dom';
 
 function App() {
@@ -13,19 +12,15 @@ function App() {
       <Header />
       <Route
         exact path="/"
-        component={Dashboard}
+        component={Home}
       />
-      <Route
+      <Route 
         path="/add"
         component={Add}
       />
       <Route
-        path="/login"
-        component={Login}
-      />
-      <Route
-        path="/signup"
-        component={Signup}
+        path="/logout"
+        component={Logout}
       />
     </div>
   );
