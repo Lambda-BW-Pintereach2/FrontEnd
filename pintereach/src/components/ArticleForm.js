@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Boards from './Boards';
 
-const Article = (props) => {
-    console.log('Article props', props);
+const ArticleForm = (props) => {
+    console.log('ArticleForm props', props);
     const [newArticles, setNewArticles] = useState({
         artitle: "",
         description: "",
@@ -63,4 +62,4 @@ const Article = (props) => {
     )
 };
 
-export default Article;
+export default ArticleForm;
