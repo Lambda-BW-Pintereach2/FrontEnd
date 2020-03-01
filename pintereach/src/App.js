@@ -13,10 +13,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Route
+      {/* <Route
         exact path="/"
         component={Dashboard}
-      />
+      /> */}
       <Route
         path="/add"
         component={Add}
@@ -29,7 +29,7 @@ function App() {
         path="/signup"
         component={Signup}
       />
-      <PrivateRoute path="/user/:id" component={Dashboard}></PrivateRoute>
+      <PrivateRoute path="/dashboard" component={Dashboard}></PrivateRoute>
     </div>
   );
 }

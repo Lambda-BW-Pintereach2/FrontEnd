@@ -1,44 +1,74 @@
 import React, { useState, useEffect } from 'react';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 const Signup = (status) => {
-    const [users, setUsers] = useState([])
+    const { push } = useHistory()
+    const [users, setUsers] = useState({
+        username: "",
+        email: "",
+        password: ""
+    })
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios
+            .post('https://medcabinet1.herokuapp.com/api/auth/register', users)
+            .then(res => {
+                console.log(res, `success`)
+                push("/login")
+            })
+            .catch(err => console.log(err) &
+                alert("This one is taken, try again"))
+    }
 
-    useEffect(() => {
-        console.log("Status has changed!", status)
-        status && setUsers(users => [...users, status])
-    }, [status])
+    const handleChanges = (e) => {
+        e.preventDefault()
+        setUsers({
+            ...users,
+            [e.target.name]: e.target.value
+        })
+    }
+
     return (
         <div>
-            <br />
-            <form>
-                <input
-                    type="text"
-                    name="username"
-                    value=""
-                    placeholder="Username"
-                />
+            <>
                 <br />
-                <br />
-                <input
-                    type="email"
-                    name="email"
-                    value=""
-                    placeholder="Email"
-                />
-                <br />
-                <br />
-                <input
-                    type="password"
-                    name="password"
-                    value=""
-                    placeholder="Password"
-                />
-                <br />
-                <br />
-                <button>Sign In</button>
-            </form>
+                <form onSubmit={handleSubmit}>
+                    <input
+
+                        type="text"
+                        name="username"
+                        value={users.username}
+                        placeholder="Username"
+                        onChange={handleChanges}
+                    />
+                    {console.log(users)}
+                    <br />
+                    <br />
+                    <input
+                        type="email"
+                        name="email"
+                        value={users.email}
+                        placeholder="Email"
+                        onChange={handleChanges}
+                    />
+                    <br />
+                    <br />
+                    <input
+                        type="password"
+                        name="password"
+                        value={users.password}
+                        placeholder="Password"
+                        onChange={handleChanges}
+                    />
+                    <br />
+                    <br />
+                    <button>Sign In</button>
+                </form>
+            </>
         </div>
     )
-};
+}
 
 export default Signup;

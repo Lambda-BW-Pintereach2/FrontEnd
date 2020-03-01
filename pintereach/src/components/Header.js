@@ -8,9 +8,9 @@ const Header = (props) => {
             <h1>Pintereach</h1>
             <Link to="/signup">Signup</Link>
             <Link to="/login">Login</Link>
-            <Link to="/">Add</Link>
-            <Link to="/">Dashboard</Link>
-            <Link to="/login" onClick={props.logout}>Logout</Link>
+            <Link to="/add">Add</Link>
+            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/login" onClick={() => localStorage.removeItem("token")}>Logout</Link>
 
         </div>
     )
