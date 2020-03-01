@@ -7,6 +7,8 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import { Route } from 'react-router-dom';
 
+import PrivateRoute from './utils/PrivateRoute'
+
 function App() {
   return (
     <div className="App">
@@ -27,6 +29,7 @@ function App() {
         path="/signup"
         component={Signup}
       />
+      <PrivateRoute path="/user/:id" component={Dashboard}></PrivateRoute>
     </div>
   );
 }
