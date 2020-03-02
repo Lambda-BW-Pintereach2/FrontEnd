@@ -7,14 +7,16 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import { Route } from 'react-router-dom';
 
+import PrivateRoute from './utils/PrivateRoute'
+
 function App() {
   return (
     <div className="App">
       <Header />
-      <Route
+      {/* <Route
         exact path="/"
         component={Dashboard}
-      />
+      /> */}
       <Route
         path="/add"
         component={Add}
@@ -27,6 +29,7 @@ function App() {
         path="/signup"
         component={Signup}
       />
+      <PrivateRoute path="/dashboard" component={Dashboard}></PrivateRoute>
     </div>
   );
 }

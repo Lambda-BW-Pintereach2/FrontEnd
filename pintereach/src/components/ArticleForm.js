@@ -1,25 +1,37 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 const ArticleForm = (props) => {
     console.log('ArticleForm props', props);
-    const [newArticles, setNewArticles] = useState({
-        artitle: "",
-        description: "",
-        image: "",
-        url: ""
-    });
+    // const [newArticles, setNewArticles] = useState({
+    //     artitle: "",
+    //     description: "",
+    //     image: "",
+    //     url: ""
+    // });
+
+    const dispatch = useDispatch()
+    const newArticles = useSelector(state => state.article)
 
     const handleChanges = event => {
-        setNewArticles({...newArticles, [event.target.name]: event.target.value});
+        // setNewArticles({ ...newArticles, [event.target.name]: event.target.value });
+        event.preventDefault()
+        dispatch({
+            type: "FORMCHANGE",
+            name: event.target.name,
+            value: event.target.value
+        })
     };
 
     const submitForm = event => {
         event.preventDefault();
         props.addNewArticle(newArticles);
-        setNewArticles({article:"", description: "", image: "", url: ""});
+        dispatch({
+            type: "RESETFORM"
+        });
     };
 
-    
+
     return (
         <form onSubmit={submitForm}>
             <label htmlFor="article">Article:</label>
@@ -48,6 +60,7 @@ const ArticleForm = (props) => {
                 value={newArticles.url}
                 onChange={handleChanges}
             />
+            {console.log(newArticles)}
             <label htmlFor="image">Image:</label>
             <input
                 type="url"
