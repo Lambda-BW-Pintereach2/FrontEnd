@@ -1,38 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import testdata from '../testdata';
 import Articles from './Articles';
+import Add from './Add';
+import styled from 'styled-components';
+import { Route, Link } from 'react-router-dom';
+
+const DashboardStyle = styled.div `
+    padding-top: 2rem;
+    margin: 0rem;
+`;
+
+const ButtonStyle= styled.button  `
+    width: 8rem;
+    border-radius: .5rem;
+    background: #000000;
+    margin-bottom: 2rem;
+    
+    a {
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+    }
+`;
 
 const Dashboard = () => {
-    // const [boards, setBoards] = useState(testdata);
-    const [articles, setArticles] = useState(testdata);
-
-    // const addNewBoard = board => {
-    //     const newBoard = {
-    //         id: Date.now(),
-    //         title: board.title
-    //     };
-
-    //     setBoards([...boards, newBoard]);
-    // };
-
-    // const addNewArticle = article => {
-    //     const newArticle = {
-    //         id: Date.now(),
-    //         article: article.article,
-    //         description: article.description,
-    //         image: article.image,
-    //         url: article.url
-    //     };
-
-    //     setArticles([...articles, newArticle]);
-    // };
-
-
+    const [articles, setArticles] = useState([]);
+    
+    
     return (
-        <div className="my-boards">
-            <h1>My Articles</h1>
-            <Articles articles={articles} />    
-        </div>
+        <DashboardStyle className="dashboard">
+            <ButtonStyle className="add-button">
+                <Link to="/add">Add Article</Link>
+            </ButtonStyle>
+            <Articles articles={articles} />
+        </DashboardStyle>
     );
 };
 
