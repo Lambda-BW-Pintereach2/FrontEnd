@@ -34,6 +34,8 @@ const ArticleForm = (props) => {
 
     return (
         <form onSubmit={submitForm}>
+            <br />
+            <br />
             <label htmlFor="article">Article:</label>
             <input
                 type="text"
@@ -42,7 +44,9 @@ const ArticleForm = (props) => {
                 name="article"
                 value={newArticles.article}
                 onChange={handleChanges}
-            /><label htmlFor="description">Description:</label>
+            />
+            <br />
+            <label htmlFor="description">Description:</label>
             <input
                 type="text"
                 placeholder="Enter an article description"
@@ -51,6 +55,7 @@ const ArticleForm = (props) => {
                 value={newArticles.description}
                 onChange={handleChanges}
             />
+            <br />
             <label htmlFor="url">Link:</label>
             <input
                 type="url"
@@ -61,6 +66,7 @@ const ArticleForm = (props) => {
                 onChange={handleChanges}
             />
             {console.log(newArticles)}
+            <br />
             <label htmlFor="image">Image:</label>
             <input
                 type="url"
@@ -70,6 +76,7 @@ const ArticleForm = (props) => {
                 value={newArticles.image}
                 onChange={handleChanges}
             />
+            <br />
             <button type="submit">Add</button>
         </form>
     )

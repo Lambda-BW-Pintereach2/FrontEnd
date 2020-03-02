@@ -1,8 +1,8 @@
-import * as actionTypes from '../actions/UserActions'
+// import * as actionTypes from '../actions/UserActions'
 
 const initialState = {
+    // loggedIn: localStorage.getItem('token') ? true : false,
     loggedIn: false,
-    logginIn: false,
     article: {
         article: "",
         description: "",
@@ -30,6 +30,11 @@ export default (state = initialState, action) => {
                     link: "",
                     image: "",
                 }
+            }
+        case "LOGSTATUS":
+            return {
+                ...state,
+                loggedIn: action.payload
             }
         default:
             return state
