@@ -49,7 +49,7 @@ const Add = () => {
     
     return (
         <AddStyle className="add-container">
-            <ButtonStyle className="all-button"><Link to='/'>Back to All</Link></ButtonStyle>
+            <ButtonStyle className="all-button"><Link to='/dashboard'>Back to All</Link></ButtonStyle>
             <h2>Add an article</h2>
             <div>
                 <ArticleForm addNewArticle={addNewArticle} addArticle={addArticle} />
