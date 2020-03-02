@@ -3,9 +3,13 @@ import { axiosWithAuth } from '../utils/axiosWithAuth'
 export const ADD_ARTICLE = "ADD_ARTICLE"
 export const UPDATE_ARTICLE = "UPDATE_ARTICLE"
 export const DELETE_ARTICLE = "DELETE_ARTICLE"
-
+export const LOGSTATUS = "LOGSTATUS"
 
 const URL = ""
+
+export const setLoggedIn = bool => {
+    return { type: LOGSTATUS, payload: bool }
+}
 
 // export const register = (userRegister) => dispatch => {
 //     axiosWithAuth()

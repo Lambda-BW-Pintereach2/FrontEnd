@@ -68,9 +68,13 @@ import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoggedIn } from '../actions/UserActions';
 
 const Login = (status) => {
     const { push } = useHistory()
+    const userLoggin = useSelector(state => state.loggedIn)
+    const dispatch = useDispatch()
     const [users, setUsers] = useState({
         username: "",
         password: ""
@@ -81,6 +85,7 @@ const Login = (status) => {
             .post('https://medcabinet1.herokuapp.com/api/auth/login', users)
             .then(res => {
                 localStorage.setItem("token", res.data.token)
+                dispatch(setLoggedIn(true))
                 console.log(res, `success`)
                 push("/dashboard")
             })
@@ -109,15 +114,6 @@ const Login = (status) => {
                         onChange={handleChanges}
                     />
                     {console.log(users)}
-                    <br />
-                    <br />
-                    {/* <input
-                        type="email"
-                        name="email"
-                        value={users.email}
-                        placeholder="Email"
-                        onChange={handleChanges}
-                    /> */}
                     <br />
                     <br />
                     <input
