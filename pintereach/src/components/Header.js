@@ -12,6 +12,12 @@ const HeaderStyle= styled.div `
     align-items: center;
     flex-flow: row wrap;
     padding: .5rem 2rem;
+
+    @media only screen and (max-width: 768px) {
+        padding: 1rem 2rem .5rem 2rem;
+        flex-direction: column;
+        justify-content: center;
+    }
 `;
 
 const HeaderLogo= styled.h1 `
@@ -32,7 +38,31 @@ const LinkContainer = styled.div  `
         text-decoration: none;
         color: white;
         padding: .5rem;
+
+        :hover {
+            color: #FF0000;
+            font-weight: bold;
+        }
     }
+`;
+
+const SpanStyle=styled.span `
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 15rem;
+    font-weight: bold;
+
+    @media only screen and (max-width: 768px) {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+`;
+
+const SpanWelcome = styled.div `
+    font-size: .75rem;
 `;
 
 
@@ -43,8 +73,9 @@ const Header = (props) => {
         <div>
             {console.log(userLoggin)}
             {userLoggin ? (
-                <div>
-                    <span><h1>Pintereach</h1>Welcome{props.username}</span>
+                <HeaderStyle>
+                    <SpanStyle><HeaderLogo>Pintereach</HeaderLogo><SpanWelcome>Welcome,{props.username}</SpanWelcome></SpanStyle>
+                    <LinkContainer>
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/login"
                         onClick={
@@ -53,15 +84,18 @@ const Header = (props) => {
                                 dispatch(setLoggedIn(false))
                             }
                         }>Logout</Link>
-                </div>
+                    </LinkContainer>
+                </HeaderStyle>
             ) : (
-                    <div>
-                        <h1>Pintereach</h1>
+                    <HeaderStyle>
+                        <HeaderLogo>Pintereach</HeaderLogo>
+                        <LinkContainer>
                         <Link to="/signup">Signup</Link>
                         <Link to="/login">Login</Link>
                         {/* <Link to="/add">Add</Link>
                         <Link to="/dashboard">Dashboard</Link> */}
-                    </div>
+                        </LinkContainer>
+                    </HeaderStyle>
                 )
             }
         </div>
