@@ -5,14 +5,14 @@ import Dashboard from './components/Dashboard';
 import Add from './components/Add';
 import Signup from './components/Signup';
 import Login from './components/Login';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route } from 'react-router-dom';
 
 import PrivateRoute from './utils/PrivateRoute'
 
 function App() {
 
-  const userLoggin = useSelector(state => state.loggedIn)
+  // const userLoggin = useSelector(state => state.loggedIn)
   const dispatch = useDispatch()
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -25,14 +25,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {/* <Route
-        exact path="/"
-        component={Dashboard}
-      /> */}
-      {/* <Route
-        path="/add"
-        component={Add}
-      /> */}
+
       <Route
         path="/login"
         component={Login}

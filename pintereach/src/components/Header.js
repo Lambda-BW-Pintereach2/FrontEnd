@@ -9,10 +9,10 @@ const Header = (props) => {
     const dispatch = useDispatch()
     return (
         <div>
-            {console.log(userLoggin)}
+            {console.log("Is the user logged in", userLoggin)}
             {userLoggin ? (
                 <div>
-                    <span><h1>Pintereach</h1>Welcome{props.username}</span>
+                    <span><h1>Pintereach</h1>Welcome {props.username}</span>
                     <Link to="/add">Add</Link>
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/login"

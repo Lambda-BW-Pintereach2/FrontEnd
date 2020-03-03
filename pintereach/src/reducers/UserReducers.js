@@ -1,8 +1,8 @@
 // import * as actionTypes from '../actions/UserActions'
 
 const initialState = {
-    // loggedIn: localStorage.getItem('token') ? true : false,
     loggedIn: false,
+    loadingArticle: false,
     article: {
         article: "",
         description: "",
@@ -21,6 +21,23 @@ export default (state = initialState, action) => {
                     [action.name]: action.value
                 }
             };
+        case "ADD_ARTICLE":
+            return {
+                ...state,
+                loadingArticle: true
+
+            }
+        case "EDIT_ARTICLE":
+            return {
+                ...state,
+                article: {
+                    ...state.article,
+                    article: action.article,
+                    description: action.description,
+                    link: action.link,
+                    image: action.image
+                }
+            }
         case "RESETFORM":
             return {
                 ...state,

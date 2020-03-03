@@ -1,79 +1,12 @@
-// import React, { useState } from 'react';
-// import { axiosWithAuth } from '../utils/axiosWithAuth'
-
-// const Login = (props) => {
-//     const [login, setlogin] = useState({
-//         email: "",
-//         password: ""
-//     })
-
-//     const handleChanges = e => {
-//         setlogin({
-//             ...login,
-//             [e.target.name]: e.target.value
-//         })
-//     }
-
-//     const onSubmit = e => {
-//         e.preventDefault()
-//         axiosWithAuth()
-//             .post("/login", login)
-//             .then(res => {
-//                 localStorage.setItem("token", res.data.payload)
-//                 setlogin(login)
-//                 setlogin({
-//                     email: "",
-//                     password: ""
-//                 })
-//                 props.histroy.push("/")
-//             })
-//             .catch(err => {
-//                 localStorage.removeItem("token")
-//                 console.log("Thank you try again", err)
-//             }, [])
-//     }
-//     return (
-//         <div>
-//             <br />
-//             <form>
-//                 <input
-//                     type="text"
-//                     name="email"
-//                     value={login.email}
-//                     placeholder="Email"
-//                     onChange={handleChanges}
-//                 />
-//                 <br />
-//                 <br />
-//                 <input
-//                     type="password"
-//                     name="password"
-//                     value={login.password}
-//                     placeholder="Password"
-//                     onChange={handleChanges}
-//                 />
-//                 <br />
-//                 <br />
-//                 <button>Log In</button>
-//             </form>
-//         </div>
-//     )
-// };
-
-// export default Login;
-
-
-
-import React, { useState, useEffect } from 'react';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setLoggedIn } from '../actions/UserActions';
 
-const Login = (status) => {
+const Login = () => {
     const { push } = useHistory()
-    const userLoggin = useSelector(state => state.loggedIn)
+    // const userLoggin = useSelector(state => state.loggedIn)
     const dispatch = useDispatch()
     const [users, setUsers] = useState({
         username: "",
@@ -86,7 +19,7 @@ const Login = (status) => {
             .then(res => {
                 localStorage.setItem("token", res.data.token)
                 dispatch(setLoggedIn(true))
-                console.log(res, `success`)
+                console.log(`Success Login`, res)
                 push("/dashboard")
             })
             .catch(err => console.log(err) &
@@ -113,7 +46,7 @@ const Login = (status) => {
                         placeholder="Username"
                         onChange={handleChanges}
                     />
-                    {console.log(users)}
+                    {console.log("Is the user logged in", users)}
                     <br />
                     <br />
                     <input

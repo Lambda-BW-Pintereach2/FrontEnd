@@ -42,7 +42,6 @@ const Signup = (status) => {
                         placeholder="Username"
                         onChange={handleChanges}
                     />
-                    {console.log(users)}
                     <br />
                     <br />
                     <input

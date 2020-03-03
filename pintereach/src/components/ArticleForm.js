@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 const ArticleForm = (props) => {
     console.log('ArticleForm props', props);
-    // const [newArticles, setNewArticles] = useState({
-    //     artitle: "",
-    //     description: "",
-    //     image: "",
-    //     url: ""
-    // });
 
     const dispatch = useDispatch()
     const newArticles = useSelector(state => state.article)
 
     const handleChanges = event => {
-        // setNewArticles({ ...newArticles, [event.target.name]: event.target.value });
         event.preventDefault()
         dispatch({
             type: "FORMCHANGE",
