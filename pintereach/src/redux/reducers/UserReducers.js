@@ -4,10 +4,9 @@ const initialState = {
     // loggedIn: localStorage.getItem('token') ? true : false,
     loggedIn: false,
     article: {
-        article: "",
-        description: "",
-        link: "",
-        image: "",
+        id: "",
+        article_label: "",
+        url: ""
     }
 }
 
@@ -25,10 +24,9 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 article: {
-                    article: "",
-                    description: "",
-                    link: "",
-                    image: "",
+                    id: "",
+                    article_label: "",
+                    url: ""
                 }
             }
         case "LOGSTATUS":

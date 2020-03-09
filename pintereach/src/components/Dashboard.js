@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import testdata from '../testdata';
+import React, { useState } from 'react';
 import Articles from './Articles';
-import Add from './Add';
+// import Add from './Add';
 import styled from 'styled-components';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const DashboardStyle = styled.div `
     padding-top: 2rem;

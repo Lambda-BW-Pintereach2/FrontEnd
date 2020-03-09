@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import UserReducers from './reducers/UserReducers';
+import UserReducers from './redux/reducers/UserReducers';
 
 const store = createStore(UserReducers)
 

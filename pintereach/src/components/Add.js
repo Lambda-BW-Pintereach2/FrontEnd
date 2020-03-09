@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ArticleForm from './ArticleForm';
 import Articles from './Articles';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import testdata from '../testdata';
 
 const AddStyle = styled.div `
     display: flex;
@@ -20,7 +19,6 @@ const ButtonStyle= styled.button  `
     background: #000000;
     margin-bottom: 2rem;
     color: white;
-    
     a {
         color: white;
         font-weight: bold;
@@ -35,18 +33,14 @@ const Add = () => {
 
     const addNewArticle = article => {
         const newArticle = {
-            id: Date.now(),
-            article: article.article,
-            description: article.description,
-            image: article.image,
+            id: "",
+            article_label: article.article_label,
             url: article.url
         };
 
         setAddArticle([...addArticle, newArticle]);
     };
-    // console.log('addArticle', addArticle);
 
-    
     return (
         <AddStyle className="add-container">
             <ButtonStyle className="all-button"><Link to='/dashboard'>Back to All</Link></ButtonStyle>

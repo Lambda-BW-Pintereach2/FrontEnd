@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import { Card, CardBody, CardTitle, CardHeader, CardText, CardImg, CardLink, CardDeck, CardColumns, Col, Container, Row } from 'reactstrap';
 import styled from 'styled-components';
 
@@ -22,10 +22,10 @@ const ArticleTitle = styled.h1 `
     font-size: 1.5rem;
 `;
 
-const ArticleImage = styled.img `
-    width: 100%;
-    height: auto;
-`;
+// const ArticleImage = styled.img `
+//     width: 100%;
+//     height: auto;
+// `;
 
 
 const Articles = (props) => {
@@ -33,11 +33,11 @@ const Articles = (props) => {
     return (
         <ArticleContainer className="article-list">
             {props.articles.map(article => (
-                <ArticleStyle  className="article" key={article.id}>                                        
-                    <ArticleImage src={article.image}></ArticleImage>
-                    <ArticleTitle>{article.article}</ArticleTitle>
+                <ArticleStyle  className="article" key={article.id}>
+                    {/* <ArticleImage src={article.image}></ArticleImage> */}
+                    <ArticleTitle>{article.article_label}</ArticleTitle>
                     <p>{article.description}</p>
-                    <a href={article.url}>Visit Site</a> 
+                    <a target="_blank" href={article.url}>Visit Site</a> 
                 </ArticleStyle>
             ))}
         </ArticleContainer>

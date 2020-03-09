@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, } from 'react';
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoggedIn } from '../actions/UserActions';
-import { axiosWithAuth } from '../utils/axiosWithAuth'
+import { setLoggedIn } from '../redux/actions/UserActions';
 
 const Login = (status) => {
     const { push } = useHistory()

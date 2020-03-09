@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import { addArticle } from '../redux/actions/UserActions';
 
 const FormStyle= styled.form  `
     display: flex;
@@ -40,9 +40,7 @@ const ButtonStyle= styled.button  `
     }
 `;
 
-const ArticleForm = (props) => {
-    console.log('ArticleForm props', props);
-    
+const ArticleForm = (props) => {    
     const dispatch = useDispatch()
     const newArticles = useSelector(state => state.article)
 
@@ -60,6 +58,10 @@ const ArticleForm = (props) => {
         event.preventDefault();
         props.addNewArticle(newArticles);
         dispatch({
+            type: "ADD_ARTICLE",
+            payload: event.article
+        })
+        dispatch({
             type: "RESETFORM"
         });
     };
@@ -72,13 +74,13 @@ const ArticleForm = (props) => {
                 <InputStyle
                     type="text"
                     placeholder="Enter an article title"
-                    id="article"
-                    name="article"
-                    value={newArticles.article}
+                    id="article_label"
+                    name="article_label"
+                    value={newArticles.article_label}
                     onChange={handleChanges}
                 />
             </LabelStyle>
-            <br></br>
+            {/* <br></br>
             <LabelStyle htmlFor="description">Description:
                 <InputStyle
                     type="text"
@@ -88,9 +90,9 @@ const ArticleForm = (props) => {
                     value={newArticles.description}
                     onChange={handleChanges}
                 />
-            </LabelStyle>
+            </LabelStyle> */}
             <br></br>
-            <LabelStyle htmlFor="url">Link:
+            <LabelStyle>Link:
                 <InputStyle
                     type="url"
                     placeholder="Paste article link"
@@ -102,7 +104,7 @@ const ArticleForm = (props) => {
             </LabelStyle>
             <br></br>
             {console.log(newArticles)}
-            <LabelStyle htmlFor="image">Image:
+            {/* <LabelStyle htmlFor="image">Image:
                 <InputStyle
                     type="url"
                     placeholder="Paste image address"
@@ -112,7 +114,7 @@ const ArticleForm = (props) => {
                     onChange={handleChanges}
                 />
             </LabelStyle>
-            <br></br>
+            <br></br> */}
             <ButtonStyle type="submit">Add</ButtonStyle>
         </FormStyle>
     )
