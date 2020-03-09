@@ -28,19 +28,17 @@ const ArticleTitle = styled.h1 `
 // `;
 
 
-const Articles = (props) => {
-    console.log("Articles props", props);
+const AllArticles = (props) => {
+    console.log("AllArticles props", props);
 
     return (
         <ArticleContainer className="article-list">
-            {props.articles.map(article => (
-                <ArticleStyle  className="article" key={article.id}>                                        
-                    <ArticleTitle>{article.name}</ArticleTitle>
-                    <a href={article.url}>Visit Site</a> 
+                <ArticleStyle  className="article">                                        
+                    <ArticleTitle>{props.name}</ArticleTitle>
+                    <a href={props.url}>Visit Site</a> 
                 </ArticleStyle>
-            ))}
         </ArticleContainer>
     )
 };
 
-export default Articles;
+export default AllArticles;

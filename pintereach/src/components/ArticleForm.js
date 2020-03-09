@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 
 const FormStyle= styled.form  `
     display: flex;
@@ -17,6 +16,14 @@ const InputStyle= styled.input `
     text-align: left;
     margin-left: 1rem;
     width: 15rem;
+
+    :invalid {
+        border: 2px solid red;
+    }
+
+    :valid {
+        border: 2px solid black;
+    }
 `;
 
 // const LabelInputContainer = styled.div `
@@ -42,80 +49,59 @@ const ButtonStyle= styled.button  `
 
 const ArticleForm = (props) => {
     console.log('ArticleForm props', props);
-    
-    const dispatch = useDispatch()
-    const newArticles = useSelector(state => state.article)
+    const [newArticles, setNewArticles] = useState([{}]);
 
-    const handleChanges = event => {
-        // setNewArticles({ ...newArticles, [event.target.name]: event.target.value });
-        event.preventDefault()
-        dispatch({
-            type: "FORMCHANGE",
-            name: event.target.name,
-            value: event.target.value
-        })
+    const handleChanges= (event) => {
+        setNewArticles({...newArticles, [event.target.name]: event.target.value});
     };
 
     const submitForm = event => {
         event.preventDefault();
         props.addNewArticle(newArticles);
-        dispatch({
-            type: "RESETFORM"
-        });
+        setNewArticles({ name: "", url: ""});
     };
 
+    // useEffect(() => {
+    //     allArticles.map(all => {
+
+    //     })
+    // }, [])
+
+
+    
+
     return (
-        <FormStyle onSubmit={submitForm}>
-            <br></br>
-            <br></br>
-            <LabelStyle htmlFor="article">Article:
-                <InputStyle
-                    type="text"
-                    placeholder="Enter an article title"
-                    id="article"
-                    name="article"
-                    value={newArticles.article}
-                    onChange={handleChanges}
-                />
-            </LabelStyle>
-            <br></br>
-            <LabelStyle htmlFor="description">Description:
-                <InputStyle
-                    type="text"
-                    placeholder="Enter an article description"
-                    id="description"
-                    name="description"
-                    value={newArticles.description}
-                    onChange={handleChanges}
-                />
-            </LabelStyle>
-            <br></br>
-            <LabelStyle htmlFor="url">Link:
-                <InputStyle
-                    type="url"
-                    placeholder="Paste article link"
-                    id="url"
-                    name="url"
-                    value={newArticles.url}
-                    onChange={handleChanges}
-                />
-            </LabelStyle>
-            <br></br>
-            {console.log(newArticles)}
-            <LabelStyle htmlFor="image">Image:
-                <InputStyle
-                    type="url"
-                    placeholder="Paste image address"
-                    id="image"
-                    name="image"
-                    value={newArticles.image}
-                    onChange={handleChanges}
-                />
-            </LabelStyle>
-            <br></br>
-            <ButtonStyle type="submit">Add</ButtonStyle>
-        </FormStyle>
-    )
+        <div>
+            <FormStyle onSubmit={submitForm}>
+                <br></br>
+                <br></br>
+                <LabelStyle htmlFor="name">Article:
+                    <InputStyle required
+                        type="text"
+                        placeholder="Enter an article title"
+                        id="name"
+                        name="name"
+                        value={newArticles.name}
+                        onChange={handleChanges}
+                    />
+                </LabelStyle>
+                <br></br>
+                <LabelStyle htmlFor="url">Link: 
+                    <InputStyle required
+                        type="url"
+                        placeholder="Paste article link"
+                        id="url"
+                        name="url"
+                        value={newArticles.url}
+                        onChange={handleChanges}
+                    />
+                </LabelStyle>
+                <br></br>
+                <br></br>
+                <ButtonStyle type="submit">Add</ButtonStyle>
+            </FormStyle>
+        </div>
+    );
 
 };
 
