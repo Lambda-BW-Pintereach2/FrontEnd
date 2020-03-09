@@ -1,7 +1,5 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { setLoggedIn } from '../actions/UserActions';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -67,37 +65,18 @@ const SpanWelcome = styled.div `
 
 
 const Header = (props) => {
-    const userLoggin = useSelector(state => state.loggedIn)
-    const dispatch = useDispatch()
+
     return (
         <div>
-            {console.log(userLoggin)}
-            {userLoggin ? (
                 <HeaderStyle>
                     <SpanStyle><HeaderLogo>Pintereach</HeaderLogo><SpanWelcome>Welcome,{props.username}</SpanWelcome></SpanStyle>
                     <LinkContainer>
                     <Link to="/dashboard">Dashboard</Link>
-                    <Link to="/login"
-                        onClick={
-                            () => {
-                                localStorage.removeItem("token")
-                                dispatch(setLoggedIn(false))
-                            }
-                        }>Logout</Link>
+                    <Link to="/login">Logout</Link>
                     </LinkContainer>
                 </HeaderStyle>
-            ) : (
-                    <HeaderStyle>
-                        <HeaderLogo>Pintereach</HeaderLogo>
-                        <LinkContainer>
-                        <Link to="/signup">Signup</Link>
-                        <Link to="/login">Login</Link>
-                        {/* <Link to="/add">Add</Link>
-                        <Link to="/dashboard">Dashboard</Link> */}
-                        </LinkContainer>
-                    </HeaderStyle>
-                )
-            }
+            
+            
         </div>
 
     )
