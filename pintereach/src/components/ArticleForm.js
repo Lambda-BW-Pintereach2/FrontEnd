@@ -1,12 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { addArticle } from '../redux/actions/UserActions';
+import styled from 'styled-components';
 
-const FormStyle= styled.form  `
-    display: flex;
-    flex-direction: column;
-`;
 
 const LabelStyle= styled.label `
     text-align: right;
@@ -19,12 +15,12 @@ const InputStyle= styled.input `
     width: 15rem;
 `;
 
-// const LabelInputContainer = styled.div `
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     flex-flow: row no-wrap;
-// `;
+const FormStyle = styled.div `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row no-wrap;
+`;
 
 const ButtonStyle= styled.button  `
     width: 4rem;
@@ -45,7 +41,6 @@ const ArticleForm = (props) => {
     const newArticles = useSelector(state => state.article)
 
     const handleChanges = event => {
-        // setNewArticles({ ...newArticles, [event.target.name]: event.target.value });
         event.preventDefault()
         dispatch({
             type: "FORMCHANGE",

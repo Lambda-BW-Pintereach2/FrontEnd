@@ -1,12 +1,12 @@
-import React, { useState, } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux';
-import { setLoggedIn } from '../redux/actions/UserActions';
+import { useDispatch } from 'react-redux';
+import { setLoggedIn } from '../actions/UserActions';
 
-const Login = (status) => {
+const Login = () => {
     const { push } = useHistory()
-    const userLoggin = useSelector(state => state.loggedIn)
+    // const userLoggin = useSelector(state => state.loggedIn)
     const dispatch = useDispatch()
     const [users, setUsers] = useState({
         username: "",
@@ -19,7 +19,7 @@ const Login = (status) => {
             .then(res => {
                 localStorage.setItem("token", res.data.token)
                 dispatch(setLoggedIn(true))
-                console.log(res, `success`)
+                console.log(`Success Login`, res)
                 push("/dashboard")
             })
             .catch(err => console.log(err) &
@@ -46,7 +46,7 @@ const Login = (status) => {
                         placeholder="Username"
                         onChange={handleChanges}
                     />
-                    {console.log(users)}
+                    {console.log("Is the user logged in", users)}
                     <br />
                     <br />
                     <input

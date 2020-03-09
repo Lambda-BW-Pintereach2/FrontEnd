@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoggedIn } from '../redux/actions/UserActions';
 import styled from 'styled-components';
@@ -71,11 +71,11 @@ const Header = (props) => {
     const dispatch = useDispatch()
     return (
         <div>
-            {console.log(userLoggin)}
+            {console.log("Is the user logged in", userLoggin)}
             {userLoggin ? (
-                <HeaderStyle>
-                    <SpanStyle><HeaderLogo>Pintereach</HeaderLogo><SpanWelcome>Welcome,{props.username}</SpanWelcome></SpanStyle>
-                    <LinkContainer>
+                <div>
+                    <span><h1>Pintereach</h1>Welcome {props.username}</span>
+                    <Link to="/add">Add</Link>
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/login"
                         onClick={
@@ -84,8 +84,6 @@ const Header = (props) => {
                                 dispatch(setLoggedIn(false))
                             }
                         }>Logout</Link>
-                    </LinkContainer>
-                </HeaderStyle>
             ) : (
                     <HeaderStyle>
                         <HeaderLogo>Pintereach</HeaderLogo>
@@ -99,9 +97,7 @@ const Header = (props) => {
                 )
             }
         </div>
-
     )
-
 };
 
 export default Header;
